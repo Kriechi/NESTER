@@ -218,7 +218,8 @@ def main():
 
         cmdDef = ui.commandDefinitions.itemById(commandId)
         if not cmdDef:
-            cmdDef = ui.commandDefinitions.addButtonDefinition(commandId, commandName, commandDescription) # no resource folder is specified, the default one will be used
+            # no resource folder is specified, the default one will be used
+            cmdDef = ui.commandDefinitions.addButtonDefinition(commandId, commandName, commandDescription)
 
         onCommandCreated = NesterCreatedHandler()
         cmdDef.commandCreated.add(onCommandCreated)
@@ -228,7 +229,8 @@ def main():
         inputs = adsk.core.NamedValues.create()
         cmdDef.execute(inputs)
 
-        # prevent this module from being terminate when the script returns, because we are waiting for event handlers to fire
+        # prevent this module from being terminate when the script returns,
+        # because we are waiting for event handlers to fire
         adsk.autoTerminate(False)
 
     except:
